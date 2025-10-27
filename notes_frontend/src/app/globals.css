@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
+/* Ocean Professional CSS variables */
 :root {
-  --color-primary: #000000;
-  --color-secondary: #FFFFFF;
-  --color-accent: #3B82F6;
-  --color-background: #FFFFFF;
+  --ocean-primary: #2563EB;
+  --ocean-secondary: #F59E0B;
+  --ocean-success: #F59E0B;
+  --ocean-error: #EF4444;
+  --ocean-background: #f9fafb;
+  --ocean-surface: #ffffff;
+  --ocean-text: #111827;
 }
 
+/* Base resets */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -17,10 +22,76 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--color-background);
-  color: var(--color-primary);
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background-color: var(--ocean-background);
+  color: var(--ocean-text);
+}
+
+/* Layout helpers */
+.app-shell {
+  @apply min-h-screen flex flex-col;
+}
+
+.app-header {
+  @apply sticky top-0 z-30 w-full backdrop-blur border-b border-gray-100 bg-white/70;
+}
+
+.app-main {
+  @apply flex-1 flex;
+}
+
+.app-sidebar {
+  @apply w-72 border-r border-gray-100 bg-white hidden md:block;
+}
+
+.app-content {
+  @apply flex-1 p-4 md:p-6 lg:p-8;
+}
+
+/* Tailwind custom component classes (v4) */
+@layer components {
+  .ocean-gradient {
+    background-image: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(249,250,251,1) 100%);
+  }
+  .ocean-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100;
+  }
+  .ocean-card-hover {
+    @apply hover:shadow-md transition-shadow;
+  }
+  .ocean-btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors;
+  }
+  .ocean-btn-primary {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors text-white;
+    background-color: var(--ocean-primary);
+  }
+  .ocean-btn-primary:hover {
+    background-color: #1d4ed8;
+  }
+  .ocean-btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors text-white;
+    background-color: var(--ocean-secondary);
+  }
+  .ocean-btn-secondary:hover {
+    background-color: #d97706;
+  }
+  .ocean-btn-ghost {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors text-gray-700 bg-white border border-gray-200;
+  }
+  .ocean-btn-ghost:hover {
+    @apply bg-gray-50;
+  }
+  .ocean-input {
+    @apply w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition;
+  }
+  .ocean-textarea {
+    @apply w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition min-h-[200px];
+  }
+  .ocean-badge {
+    @apply inline-flex items-center rounded-full bg-blue-50 text-blue-700 text-xs px-2 py-0.5;
+  }
 }
